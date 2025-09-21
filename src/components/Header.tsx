@@ -13,7 +13,7 @@ const Header = () => {
                 <span className="text-white font-bold text-sm">GTU</span>
               </div>
               <div>
-                <h1 className="text-xl font-bold text-gtu-blue">Gujarat Technological University</h1>
+                <h1 className="text-xl font-bold text-gtu-blue">Atharva Technological University</h1>
                 <p className="text-xs text-muted-foreground">Excellence in Technology Education</p>
               </div>
             </div>

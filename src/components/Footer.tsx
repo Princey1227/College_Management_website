@@ -22,12 +22,12 @@ const Footer = () => {
                 <span className="text-white font-bold text-sm">GTU</span>
               </div>
               <div>
-                <h3 className="text-lg font-bold">Gujarat Technological University</h3>
+                <h3 className="text-lg font-bold">Atharva Technological University</h3>
               </div>
             </div>
             <p className="text-white/80 text-sm">
               Leading institution in technical education, fostering innovation and excellence 
-              across Gujarat's educational landscape.
+              across Atharva's educational landscape.
             </p>
             <div className="flex space-x-3">
               <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
@@ -95,7 +95,7 @@ const Footer = () => {
                 <MapPin className="h-4 w-4 mt-1 text-gtu-orange" />
                 <div>
                   <p className="text-white/80">
-                    Nr. Vista Gujarat, Gandhinagar - Ahmedabad Highway,<br />
+                    Nr. Vista Atharva, Gandhinagar - Ahmedabad Highway,<br />
                     Chandkheda, Ahmedabad - 382424
                   </p>
                 </div>
@@ -117,7 +117,7 @@ const Footer = () => {
         </div>
 
         <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/60">
-          <p>&copy; 2024 Gujarat Technological University. All rights reserved. | Privacy Policy | Terms of Service</p>
+          <p>&copy; 2024 Atharva Technological University. All rights reserved. | Privacy Policy | Terms of Service</p>
         </div>
       </div>
     </footer>

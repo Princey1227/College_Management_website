@@ -25,7 +25,7 @@ const Hero = () => {
               <span className="block text-gtu-orange"> Technology Education</span>
             </h1>
             <p className="text-xl text-white/90 leading-relaxed">
-              Gujarat Technological University - Leading the way in technical education, 
+              Atharva Technological University - Leading the way in technical education, 
               research, and innovation across 480+ affiliated institutes.
             </p>
             
