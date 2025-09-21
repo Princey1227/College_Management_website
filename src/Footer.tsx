@@ -12,14 +12,14 @@ import {
 
 const Footer = () => {
   return (
-    <footer className="bg-atu-blue text-white">
+    <footer className="bg-gtu-blue text-white">
       <div className="container mx-auto px-4 py-12">
         <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
           {/* University Info */}
           <div className="space-y-4">
             <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-atu-orange rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">ATU</span>
+              <div className="w-8 h-8 bg-gtu-orange rounded-full flex items-center justify-center">
+                <span className="text-white font-bold text-sm">GTU</span>
               </div>
               <div>
                 <h3 className="text-lg font-bold">Atharva Technological University</h3>
