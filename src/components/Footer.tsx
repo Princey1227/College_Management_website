@@ -1,4 +1,5 @@
-import { Button } from "@components/ui/button";
+import { Button } from "@/components/ui/button";
+import { Link } from "react-router-dom";
 import { 
   Mail, 
   Phone, 
@@ -6,118 +7,135 @@ import {
   Facebook, 
   Twitter, 
   Linkedin, 
-  Youtube,
-  ExternalLink
+  Youtube, 
+  ExternalLink,
+  GraduationCap
 } from "lucide-react";
 
 const Footer = () => {
   return (
-    <footer className="bg-gtu-blue text-white">
-      <div className="container mx-auto px-4 py-12">
-        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-8">
+    <footer className="bg-gtu-blue text-white border-t border-blue-900/40">
+      <div className="container mx-auto px-4 py-14">
+        <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-10">
           {/* University Info */}
           <div className="space-y-4">
-            <div className="flex items-center space-x-2">
-              <div className="w-8 h-8 bg-gtu-orange rounded-full flex items-center justify-center">
-                <span className="text-white font-bold text-sm">GTU</span>
+            <div className="flex items-center space-x-3">
+              <div className="w-10 h-10 bg-gtu-orange rounded-full flex items-center justify-center shadow-md">
+                <GraduationCap className="h-6 w-6 text-white" />
               </div>
               <div>
-                <h3 className="text-lg font-bold">Atharva Technological University</h3>
+                <h3 className="text-lg font-bold tracking-tight">Atharva Tech University</h3>
+                <p className="text-xs text-white/70">State University • Govt of Gujarat</p>
               </div>
             </div>
-            <p className="text-white/80 text-sm">
-              Leading institution in technical education, fostering innovation and excellence 
-              across Atharva's educational landscape.
+            <p className="text-white/80 text-sm leading-relaxed">
+              Premier institution dedicated to technological advancement, multidisciplinary research, student entrepreneurship, and global education benchmarks.
             </p>
-            <div className="flex space-x-3">
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-                <Facebook className="h-4 w-4" />
+            <div className="flex space-x-2 pt-2">
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full h-9 w-9" asChild>
+                <a href="https://facebook.com" target="_blank" rel="noreferrer" aria-label="Facebook">
+                  <Facebook className="h-4 w-4" />
+                </a>
               </Button>
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-                <Twitter className="h-4 w-4" />
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full h-9 w-9" asChild>
+                <a href="https://twitter.com" target="_blank" rel="noreferrer" aria-label="Twitter">
+                  <Twitter className="h-4 w-4" />
+                </a>
               </Button>
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-                <Linkedin className="h-4 w-4" />
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full h-9 w-9" asChild>
+                <a href="https://linkedin.com" target="_blank" rel="noreferrer" aria-label="LinkedIn">
+                  <Linkedin className="h-4 w-4" />
+                </a>
               </Button>
-              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20">
-                <Youtube className="h-4 w-4" />
+              <Button variant="ghost" size="icon" className="text-white hover:bg-white/20 rounded-full h-9 w-9" asChild>
+                <a href="https://youtube.com" target="_blank" rel="noreferrer" aria-label="YouTube">
+                  <Youtube className="h-4 w-4" />
+                </a>
               </Button>
             </div>
           </div>
 
           {/* Quick Links */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Quick Links</h4>
-            <ul className="space-y-2 text-sm">
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Academic Calendar</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Examination</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Admissions</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Faculty</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Research</a></li>
-              <li><a href="#" className="text-white/80 hover:text-white transition-colors">Grievance Portal</a></li>
+            <h4 className="text-base font-semibold mb-4 text-white uppercase tracking-wider text-xs">Navigation</h4>
+            <ul className="space-y-2.5 text-sm">
+              <li><Link to="/" className="text-white/80 hover:text-white transition-colors">Home Portal</Link></li>
+              <li><Link to="/academics" className="text-white/80 hover:text-white transition-colors">Academics & Syllabus</Link></li>
+              <li><Link to="/results" className="text-white/80 hover:text-white transition-colors">Examination & Results</Link></li>
+              <li><Link to="/admissions" className="text-white/80 hover:text-white transition-colors">Admissions 2024</Link></li>
+              <li><Link to="/library" className="text-white/80 hover:text-white transition-colors">Digital E-Library</Link></li>
+              <li><Link to="/innovation" className="text-white/80 hover:text-white transition-colors">Startup & Innovation</Link></li>
+              <li><Link to="/contact" className="text-white/80 hover:text-white transition-colors">Grievance & Contact</Link></li>
             </ul>
           </div>
 
           {/* Academic Resources */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Academic Resources</h4>
-            <ul className="space-y-2 text-sm">
+            <h4 className="text-base font-semibold mb-4 text-white uppercase tracking-wider text-xs">Portals & Services</h4>
+            <ul className="space-y-2.5 text-sm">
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors flex items-center">
-                  GTU Library <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
+                <Link to="/login" className="text-white/80 hover:text-white transition-colors flex items-center">
+                  Student ERP Login <ExternalLink className="h-3 w-3 ml-1.5 opacity-70" />
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors flex items-center">
-                  GCAS Portal <ExternalLink className="h-3 w-3 ml-1" />
-                </a>
+                <Link to="/login?role=faculty" className="text-white/80 hover:text-white transition-colors flex items-center">
+                  Faculty Portal <ExternalLink className="h-3 w-3 ml-1.5 opacity-70" />
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">Syllabus Downloads</a>
+                <Link to="/login?role=admin" className="text-white/80 hover:text-white transition-colors flex items-center">
+                  Admin Control Center <ExternalLink className="h-3 w-3 ml-1.5 opacity-70" />
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">Innovation Council</a>
+                <Link to="/library" className="text-white/80 hover:text-white transition-colors">
+                  Research Journals (IEEE/Springer)
+                </Link>
               </li>
               <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">OSTC Workshops</a>
-              </li>
-              <li>
-                <a href="#" className="text-white/80 hover:text-white transition-colors">Startup Support</a>
+                <Link to="/contact" className="text-white/80 hover:text-white transition-colors">
+                  Anti-Ragging Helpline
+                </Link>
               </li>
             </ul>
           </div>
 
           {/* Contact Info */}
           <div>
-            <h4 className="text-lg font-semibold mb-4">Contact Information</h4>
-            <div className="space-y-3 text-sm">
+            <h4 className="text-base font-semibold mb-4 text-white uppercase tracking-wider text-xs">Contact Headquarters</h4>
+            <div className="space-y-3.5 text-sm">
               <div className="flex items-start space-x-3">
-                <MapPin className="h-4 w-4 mt-1 text-gtu-orange" />
-                <div>
-                  <p className="text-white/80">
-                    Nr. Vista Atharva, Gandhinagar - Ahmedabad Highway,<br />
-                    Chandkheda, Ahmedabad - 382424
-                  </p>
-                </div>
+                <MapPin className="h-4 w-4 mt-1 text-gtu-orange shrink-0" />
+                <p className="text-white/80 text-xs leading-relaxed">
+                  Atharva University Campus, Highway Corridor,<br />
+                  Gandhinagar - Ahmedabad Highway,<br />
+                  Gujarat - 382424, India
+                </p>
               </div>
               <div className="flex items-center space-x-3">
-                <Phone className="h-4 w-4 text-gtu-orange" />
-                <span className="text-white/80">+91-79-23267521/22/23</span>
+                <Phone className="h-4 w-4 text-gtu-orange shrink-0" />
+                <span className="text-white/80 text-xs">+91-79-23267521 / 22 / 23</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-gtu-orange" />
-                <span className="text-white/80">info@gtu.edu.in</span>
+                <Mail className="h-4 w-4 text-gtu-orange shrink-0" />
+                <span className="text-white/80 text-xs">registrar@atharva.edu.in</span>
               </div>
               <div className="flex items-center space-x-3">
-                <Mail className="h-4 w-4 text-gtu-orange" />
-                <span className="text-white/80">elibrary@gtu.edu.in</span>
+                <Mail className="h-4 w-4 text-gtu-orange shrink-0" />
+                <span className="text-white/80 text-xs">examhelp@atharva.edu.in</span>
               </div>
             </div>
           </div>
         </div>
 
-        <div className="border-t border-white/20 mt-8 pt-8 text-center text-sm text-white/60">
-          <p>&copy; 2024 Atharva Technological University. All rights reserved. | Privacy Policy | Terms of Service</p>
+        <div className="border-t border-white/15 mt-12 pt-8 flex flex-col md:flex-row justify-between items-center text-xs text-white/60 gap-4">
+          <p>&copy; {new Date().getFullYear()} Atharva Technological University. All rights reserved.</p>
+          <div className="flex space-x-6">
+            <Link to="/contact" className="hover:text-white transition-colors">Privacy Policy</Link>
+            <Link to="/contact" className="hover:text-white transition-colors">Terms of Service</Link>
+            <Link to="/contact" className="hover:text-white transition-colors">RTI Cell</Link>
+          </div>
         </div>
       </div>
     </footer>
