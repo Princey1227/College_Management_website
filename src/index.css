@@ -123,3 +123,26 @@ All colors MUST be HSL.
     @apply bg-background text-foreground;
   }
 }
+
+/* Print Layout for Marksheet & PDF Export */
+@media print {
+  header, footer, nav, .no-print, button, input {
+    display: none !important;
+  }
+
+  body, main {
+    background: white !important;
+    color: black !important;
+    padding: 0 !important;
+    margin: 0 !important;
+  }
+
+  .printable-marksheet {
+    box-shadow: none !important;
+    border: 2px solid #1e3a8a !important;
+    margin: 0 auto !important;
+    max-width: 100% !important;
+    width: 100% !important;
+    page-break-inside: avoid !important;
+  }
+}

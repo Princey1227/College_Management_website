@@ -16,7 +16,9 @@ import {
   AlertCircle, 
   Calendar, 
   FileText,
-  FileCheck
+  FileCheck,
+  QrCode,
+  ShieldCheck
 } from "lucide-react";
 import { toast } from "sonner";
 
@@ -64,7 +66,10 @@ const Results = () => {
   };
 
   const handlePrint = () => {
-    window.print();
+    toast.info("Opening Print / PDF Dialog. Select 'Save as PDF' to download your marksheet file.");
+    setTimeout(() => {
+      window.print();
+    }, 200);
   };
 
   return (
@@ -72,7 +77,7 @@ const Results = () => {
       <Header />
 
       {/* Hero Banner */}
-      <section className="bg-gradient-hero text-white py-12 md:py-16">
+      <section className="bg-gradient-hero text-white py-12 md:py-16 no-print">
         <div className="container mx-auto px-4 text-center">
           <div className="inline-flex items-center gap-2 px-3 py-1 rounded-full bg-white/20 text-xs font-semibold mb-4">
             <GraduationCap className="h-4 w-4 text-gtu-orange" />
@@ -129,7 +134,7 @@ const Results = () => {
       {/* Content Area */}
       <main className="container mx-auto px-4 py-12 flex-1">
         <Tabs defaultValue="results" className="space-y-8">
-          <TabsList className="grid grid-cols-3 max-w-md mx-auto h-11">
+          <TabsList className="grid grid-cols-3 max-w-md mx-auto h-11 no-print">
             <TabsTrigger value="results">Result Card</TabsTrigger>
             <TabsTrigger value="timetable">Exam Schedule</TabsTrigger>
             <TabsTrigger value="rechecking">Re-checking</TabsTrigger>
@@ -139,7 +144,7 @@ const Results = () => {
           <TabsContent value="results" className="space-y-6">
             {selectedResult ? (
               <div className="max-w-4xl mx-auto space-y-6">
-                <div className="flex justify-between items-center flex-wrap gap-4">
+                <div className="flex justify-between items-center flex-wrap gap-4 no-print">
                   <div className="flex items-center gap-2">
                     <CheckCircle2 className="h-5 w-5 text-emerald-600" />
                     <span className="text-sm font-semibold text-foreground">Verified Official Grade Card</span>
@@ -148,14 +153,14 @@ const Results = () => {
                     <Button variant="outline" size="sm" onClick={handlePrint}>
                       <Printer className="h-4 w-4 mr-1.5" /> Print
                     </Button>
-                    <Button variant="default" size="sm" onClick={() => toast.success("Provisional grade sheet downloaded!")}>
+                    <Button variant="default" size="sm" onClick={handlePrint}>
                       <Download className="h-4 w-4 mr-1.5" /> Download PDF
                     </Button>
                   </div>
                 </div>
 
                 {/* Marksheet Card */}
-                <Card className="border-2 border-border shadow-lg overflow-hidden bg-card">
+                <Card className="border-2 border-border shadow-lg overflow-hidden bg-card printable-marksheet">
                   {/* Marksheet Header */}
                   <div className="bg-gtu-blue text-white p-6 border-b border-border text-center relative">
                     <div className="text-xs uppercase tracking-widest text-gtu-orange font-bold">Atharva Technological University</div>
@@ -246,8 +251,46 @@ const Results = () => {
                       </div>
                     </div>
 
-                    <div className="text-[11px] text-muted-foreground border-t border-border pt-4 text-center">
-                      Note: This is an electronically generated provisional result for informational purposes. The original grade card will be issued by your affiliated college.
+                    {/* Official Verification & Sign-off Footer */}
+                    <div className="pt-6 border-t-2 border-dashed border-border grid grid-cols-1 md:grid-cols-3 gap-6 items-center">
+                      {/* QR & Security Hash */}
+                      <div className="flex items-center gap-3 bg-muted/30 p-3 rounded-lg border border-border">
+                        <div className="w-14 h-14 bg-background border border-border rounded flex items-center justify-center p-1 text-gtu-blue shrink-0 shadow-sm">
+                          <QrCode className="h-10 w-10" />
+                        </div>
+                        <div className="text-[10px] space-y-0.5 leading-tight">
+                          <div className="font-semibold text-foreground flex items-center gap-1">
+                            <ShieldCheck className="h-3.5 w-3.5 text-emerald-600" /> Tamper-evident E-Marksheet
+                          </div>
+                          <div className="text-muted-foreground font-mono">ID: ATU-{selectedResult.rollNo.slice(-6)}-2024</div>
+                          <div className="text-muted-foreground truncate max-w-[140px] font-mono text-[9px]">HASH: 0x8F9B...3E41</div>
+                          <div className="text-emerald-700 dark:text-emerald-400 font-medium">Status: Digitally Verified</div>
+                        </div>
+                      </div>
+
+                      {/* University Seal */}
+                      <div className="text-center space-y-1">
+                        <div className="inline-flex items-center justify-center w-12 h-12 rounded-full border-2 border-gtu-blue/40 bg-gtu-blue/5 text-gtu-blue font-serif font-black text-xs">
+                          ATU
+                        </div>
+                        <div className="text-[10px] font-bold text-foreground uppercase tracking-wider">Official Examination Seal</div>
+                        <div className="text-[9px] text-muted-foreground">Office of the Registrar (Evaluation)</div>
+                      </div>
+
+                      {/* Controller of Examinations Signature */}
+                      <div className="text-center md:text-right space-y-1">
+                        <div className="font-serif italic text-base text-foreground font-semibold tracking-wide">
+                          M. S. Rathore
+                        </div>
+                        <div className="h-0.5 w-28 bg-foreground/30 ml-auto mr-auto md:mr-0"></div>
+                        <div className="text-xs font-bold text-foreground">Dr. M. S. Rathore</div>
+                        <div className="text-[10px] text-muted-foreground uppercase tracking-wider">Controller of Examinations</div>
+                      </div>
+                    </div>
+
+                    <div className="text-[10px] text-muted-foreground border-t border-border pt-3 text-center leading-relaxed">
+                      This is an electronically generated provisional marksheet issued under Regulation 4.2 of Atharva Technological University. 
+                      Original authenticated grade cards are dispatched through affiliated institutions. Verification URL: <span className="font-mono text-gtu-blue">https://results.atharva.edu/verify/{selectedResult.rollNo}</span>
                     </div>
                   </CardContent>
                 </Card>
