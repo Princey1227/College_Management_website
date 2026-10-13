@@ -1,11 +1,36 @@
-import { lazy, Suspense } from "react";
+import { lazy, Suspense, useEffect } from "react";
 import { Toaster } from "@/components/ui/toaster";
 import { Toaster as Sonner } from "@/components/ui/sonner";
 import { TooltipProvider } from "@/components/ui/tooltip";
 import { QueryClient, QueryClientProvider } from "@tanstack/react-query";
-import { BrowserRouter, Routes, Route } from "react-router-dom";
+import { BrowserRouter, Routes, Route, useLocation } from "react-router-dom";
 import ProtectedRoute from "@/components/ProtectedRoute";
 import PageLoader from "@/components/PageLoader";
+
+// Dynamic route title mapping
+const pageTitles: Record<string, string> = {
+  "/": "Atharva Technological University | ERP & Academic Portal",
+  "/results": "Exam Results & Marksheets | Atharva Tech",
+  "/academics": "Academic Programs & Syllabus | Atharva Tech",
+  "/library": "Digital Library (OPAC) | Atharva Tech",
+  "/innovation": "Innovation & Research Hub | Atharva Tech",
+  "/contact": "Contact & Campus Directory | Atharva Tech",
+  "/login": "University Portal Login | Atharva Tech",
+  "/admissions": "Admissions & Intake 2024-25 | Atharva Tech",
+  "/dashboard": "Student ERP Dashboard | Atharva Tech",
+  "/admin": "Admin & Faculty Console | Atharva Tech",
+};
+
+const PageTitleUpdater = () => {
+  const location = useLocation();
+
+  useEffect(() => {
+    const title = pageTitles[location.pathname] || "Atharva Technological University";
+    document.title = title;
+  }, [location.pathname]);
+
+  return null;
+};
 
 // CODE-SPLIT LAZY LOADED ROUTE COMPONENTS
 const Index = lazy(() => import("@/pages/Index"));
@@ -28,6 +53,7 @@ const App = () => (
       <Toaster />
       <Sonner position="top-right" richColors />
       <BrowserRouter>
+        <PageTitleUpdater />
         <Suspense fallback={<PageLoader />}>
           <Routes>
             <Route path="/" element={<Index />} />
